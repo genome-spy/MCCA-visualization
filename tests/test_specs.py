@@ -37,7 +37,10 @@ def test_model_allele_metadata_source_uses_parquet_and_mcca_id():
     assert backend["sampleIdField"] == "MCCA-ID"
     assert backend["data"]["url"] == "../data/processed/model-alleles.parquet"
     assert backend["data"]["format"]["type"] == "parquet"
-    assert model_alleles["attributes"]["Kras"]["type"] == "nominal"
+    assert model_alleles["attributes"][""] == {
+        "visible": False,
+        "type": "nominal",
+    }
 
 
 def test_transcriptome_source_uses_symbol_primary_and_ensembl_lookup():
