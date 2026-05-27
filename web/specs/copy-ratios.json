@@ -1,0 +1,54 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/app/dist/schema.json",
+
+  "name": "copy-ratios",
+  "title": "Copy ratios",
+  "description": "Segmented MCCA copy-number ratio data. Values come from the source LOG2FC field and are shown as log2 copy-ratio heatmap values. These values are not purified copy-number calls, and this track does not include loss-of-heterozygosity information.",
+
+  "configurableVisibility": true,
+
+  "data": {
+    "url": "../data/processed/copy-ratios.parquet",
+    "format": {
+      "type": "parquet"
+    }
+  },
+
+  "mark": {
+    "type": "rect",
+    "minOpacity": 1.0,
+    "minWidth": 1.0
+  },
+
+  "encoding": {
+    "sample": {
+      "field": "sample"
+    },
+    "x": {
+      "chrom": "chrom",
+      "pos": "start",
+      "type": "locus",
+      "axis": {
+        "orient": "bottom",
+        "grid": false,
+        "chromGrid": true,
+        "chromGridDash": [3, 3],
+        "chromGridColor": "lightgray"
+      }
+    },
+    "x2": {
+      "chrom": "chrom",
+      "pos": "end"
+    },
+    "color": {
+      "type": "quantitative",
+      "field": "log2fc",
+      "scale": {
+        "domain": [-2.5, 0, 2.5],
+        "range": ["#0050f8", "#f6f6f6", "#ff3000"],
+        "clamp": true
+      },
+      "description": "Source LOG2FC value for the segment. Negative values indicate relative copy loss, positive values indicate relative copy gain, and the color scale is clamped for readability."
+    }
+  }
+}

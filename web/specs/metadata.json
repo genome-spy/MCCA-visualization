@@ -1,0 +1,75 @@
+{
+  "id": "cell-line-annotations",
+  "name": "cell line annotations",
+  "description": "Static MCCA cell line annotation table.",
+  "groupPath": "Annotations",
+
+  "backend": {
+    "backend": "data",
+    "sampleIdField": "MCCA-ID",
+    "data": {
+      "url": "../data/processed/samples.parquet",
+      "format": {
+        "type": "parquet"
+      }
+    }
+  },
+
+  "attributes": {
+    "CellLineName": {
+      "type": "nominal",
+      "visible": false
+    },
+    "Lineage": {
+      "type": "nominal"
+    },
+    "Tissue": {
+      "type": "nominal"
+    },
+    "CancerType": {
+      "type": "nominal"
+    },
+    "CancerTypeDetailed": {
+      "type": "nominal"
+    },
+    "MouseModelType": {
+      "type": "nominal"
+    },
+    "MouseModel": {
+      "type": "nominal"
+    },
+    "MouseModelDetailed": {
+      "type": "nominal",
+      "description": "Detailed mouse model annotation, including genotype and treatment components when present."
+    },
+    "MicroscopicMorphology": {
+      "type": "nominal"
+    },
+    "DistantMetastasis": {
+      "type": "nominal"
+    },
+    "ComplexRearrangement": {
+      "type": "nominal",
+      "description": "Indicates whether complex rearrangement is annotated for the cell line."
+    },
+    "Chromothripsis": {
+      "type": "nominal",
+      "description": "Indicates whether chromothripsis is annotated for the cell line."
+    },
+    "SurvivalDays": {
+      "type": "quantitative",
+      "description": "Mouse survival time in days when available.",
+      "scale": {
+        "scheme": "yellowgreenblue"
+      }
+    },
+    "Gender": {
+      "type": "nominal",
+      "description": "Reported sex of the mouse from which the cell line was derived."
+    },
+    "ImmunocompetentTransplantation": {
+      "type": "nominal",
+      "description": "MCCA category for immunocompetent transplantation suitability."
+    }
+  }
+}

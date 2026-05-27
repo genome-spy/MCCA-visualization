@@ -1,0 +1,118 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/app/dist/schema.json",
+
+  "assembly": "mm10",
+  "specId": "MCCA GenomeSpy demo",
+
+  "description": [
+    "Independent GenomeSpy visualization demo based on processed Mouse Cancer Cell Line Atlas data.",
+    "This starter view shows cell line annotations, mm10 cytobands, segmented copy ratios, and somatic mutations on canonical mm10 chromosomes only.",
+    "Alternative contigs, decoys, and other non-canonical sequence names are excluded during data wrangling.",
+    "The copy-number values are source LOG2FC values. They are not purified copy numbers and should be interpreted as copy-ratio segments.",
+    "The mutation track does not use semantic scoring. It is intended as a basic atlas-scale context layer and as a testbed for GenomeSpy Agent descriptions."
+  ],
+
+  "spacing": 7,
+
+  "vconcat": [
+    {
+      "import": {
+        "url": "cytobands.json"
+      }
+    },
+
+    {
+      "name": "samples",
+      "title": "MCCA cell lines",
+      "description": "Sample-level view of MCCA cell lines. Use metadata attributes to group, sort, and filter the atlas by lineage, tissue, cancer type, model, morphology, metastasis, chromothripsis, sex, or transplantation compatibility.",
+
+      "stickySummaries": true,
+
+      "samples": {
+        "identity": {
+          "data": {
+            "url": "../data/processed/samples.parquet",
+            "format": {
+              "type": "parquet"
+            }
+          },
+          "idField": "MCCA-ID",
+          "displayNameField": "CellLineName"
+        }
+      },
+
+      "metadata": {
+        "sources": [
+          {
+            "id": "cell-line-annotations",
+            "import": {
+              "url": "metadata.json"
+            }
+          },
+          {
+            "id": "model-alleles",
+            "import": {
+              "url": "model-alleles.json"
+            }
+          },
+          {
+            "id": "transcriptome",
+            "import": {
+              "url": "transcriptome.json"
+            }
+          }
+        ]
+      },
+
+      "spec": {
+        "title": "Genomic data",
+        "description": "Canonical mm10 copy-ratio segments and somatic mutations shown for each MCCA cell line. This first version intentionally omits genes, LOH, purified copy number, and mutation semantic scores.",
+
+        "params": [
+          {
+            "name": "brush",
+            "select": {
+              "type": "interval",
+              "encodings": ["x"],
+              "zoom": "wheel[event.shiftKey]",
+              "mark": {
+                "fill": "#a0ff00",
+                "fillOpacity": 0.05,
+                "stroke": "black",
+                "strokeOpacity": 0.8,
+                "measure": "inside",
+                "shadowOpacity": 1.0,
+                "shadowColor": "white",
+                "shadowBlur": 25
+              }
+            }
+          }
+        ],
+
+        "resolve": {
+          "scale": {
+            "color": "independent",
+            "fill": "independent",
+            "size": "independent"
+          }
+        },
+
+        "layer": [
+          {
+            "import": {
+              "url": "copy-ratios.json"
+            }
+          },
+          {
+            "import": {
+              "url": "mutations.json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "import": { "url": "gencode-genes.json" }
+    }
+  ]
+}
