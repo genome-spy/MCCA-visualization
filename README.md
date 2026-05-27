@@ -98,10 +98,15 @@ uv run mcca-gencode-genes
 Serve the static visualization:
 
 ```bash
-uv run python -m http.server 8008 --directory web
+cd web
+uv run python -m RangeHTTPServer 8008
 ```
 
 Open <http://localhost:8008>.
+
+The transcriptome metadata are loaded from Zarr. The local server therefore
+uses `RangeHTTPServer`, which supports HTTP range requests needed by lazy array
+loading.
 
 ## Repository Layout
 
