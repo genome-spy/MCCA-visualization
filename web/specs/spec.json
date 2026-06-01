@@ -41,6 +41,7 @@
       "metadata": {
         "sources": [
           { "import": { "url": "metadata.json" } },
+          { "import": { "url": "sequencing.json" } },
           { "import": { "url": "model-alleles.json" } },
           { "import": { "url": "transcriptome.json" } }
         ]

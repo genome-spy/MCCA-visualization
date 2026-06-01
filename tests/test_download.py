@@ -42,6 +42,14 @@ def test_download_files_puts_cytobands_under_web_data(tmp_path, monkeypatch):
         raw_dir / "gencode.vM25.annotation.gtf.gz.download",
     ) in calls
     assert (
+        "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB105230&result=read_run&fields=run_accession,study_accession,sample_accession,secondary_sample_accession,experiment_accession,sample_alias,sample_title,library_strategy,library_source,instrument_model,fastq_ftp,submitted_ftp&format=tsv&download=true&limit=0",
+        raw_dir / "ena_lcwgs_runs.tsv.download",
+    ) in calls
+    assert (
+        "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB105231&result=read_run&fields=run_accession,study_accession,sample_accession,secondary_sample_accession,experiment_accession,sample_alias,sample_title,library_strategy,library_source,instrument_model,fastq_ftp,submitted_ftp&format=tsv&download=true&limit=0",
+        raw_dir / "ena_wes_runs.tsv.download",
+    ) in calls
+    assert (
         "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz",
         raw_dir / "gene2ensembl.gz.download",
     ) in calls

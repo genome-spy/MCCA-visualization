@@ -25,6 +25,13 @@ from mcca_genomespy.expression import (
     parse_expression_float,
     write_transcriptome_zarr,
 )
+from mcca_genomespy.sequencing_metadata import (
+    LCWGS_RUN_REPORT,
+    WES_RUN_REPORT,
+    read_run_report_sample_ids,
+    sequencing_metadata_rows,
+    write_sequencing_metadata_parquet,
+)
 from mcca_genomespy.values import is_missing_value
 
 
@@ -314,6 +321,14 @@ def wrangle(raw_dir: Path, processed_dir: Path) -> None:
         processed_dir / "model-alleles.parquet",
         model_allele_rows(metadata_rows),
     )
+    sequencing_metadata_count = write_sequencing_metadata_parquet(
+        processed_dir / "sequencing.parquet",
+        sequencing_metadata_rows(
+            metadata_rows,
+            read_run_report_sample_ids(raw_dir / LCWGS_RUN_REPORT),
+            read_run_report_sample_ids(raw_dir / WES_RUN_REPORT),
+        ),
+    )
     cnv_count = write_parquet(
         processed_dir / "copy-ratios.parquet",
         CNV_SCHEMA,
@@ -333,6 +348,7 @@ def wrangle(raw_dir: Path, processed_dir: Path) -> None:
 
     print(f"Wrote {metadata_count} samples")
     print(f"Wrote {model_allele_count} model allele metadata rows")
+    print(f"Wrote {sequencing_metadata_count} sequencing metadata rows")
     print(f"Wrote {cnv_count} canonical copy-ratio segments")
     print(f"Wrote {mutation_count} canonical mutation annotations")
 

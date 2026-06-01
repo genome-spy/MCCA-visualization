@@ -25,6 +25,7 @@ dev = [
 [project.scripts]
 mcca-download = "mcca_genomespy.download:main"
 mcca-wrangle = "mcca_genomespy.wrangle:main"
+mcca-sequencing-metadata = "mcca_genomespy.sequencing_metadata:main"
 mcca-gencode-genes = "mcca_genomespy.gene_annotations:main"
 
 [tool.pytest.ini_options]

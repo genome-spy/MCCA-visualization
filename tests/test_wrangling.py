@@ -8,6 +8,13 @@ import zarr
 import mcca_genomespy.expression as expression
 import mcca_genomespy.values as values
 import mcca_genomespy.wrangle as wrangle
+from mcca_genomespy.sequencing_metadata import (
+    extract_mcca_id,
+    read_run_report_sample_ids,
+    sequencing_metadata_rows,
+    sequencing_type,
+    write_sequencing_metadata_parquet,
+)
 from mcca_genomespy.wrangle import (
     CANONICAL_CHROMS,
     CNV_SCHEMA,
@@ -262,6 +269,64 @@ def test_write_model_alleles_parquet_uses_dynamic_gene_columns(tmp_path):
             "Trp53": None,
         },
     ]
+
+
+def test_sequencing_metadata_derives_assay_availability_from_ena_aliases(tmp_path):
+    lcwgs_path = tmp_path / "lcwgs.tsv"
+    wes_path = tmp_path / "wes.tsv"
+    lcwgs_path.write_text(
+        "run_accession\tsample_alias\n"
+        "ERR1\tMCCA0001-Cells-lcWGS\n"
+        "ERR2\tMCCA0002-Cells-lcWGS\n"
+    )
+    wes_path.write_text(
+        "run_accession\tsample_alias\n"
+        "ERR3\tMCCA0002-Cells\n"
+        "ERR4\tMCCA0003-Cells\n"
+    )
+    sample_rows = [
+        {"MCCA-ID": "MCCA0001"},
+        {"MCCA-ID": "MCCA0002"},
+        {"MCCA-ID": "MCCA0003"},
+        {"MCCA-ID": "MCCA0004"},
+    ]
+
+    rows = list(
+        sequencing_metadata_rows(
+            sample_rows,
+            read_run_report_sample_ids(lcwgs_path),
+            read_run_report_sample_ids(wes_path),
+        )
+    )
+
+    assert extract_mcca_id("MCCA0506-Cells-lcWGS") == "MCCA0506"
+    assert sequencing_type(True, True) == "lcWGS+WES"
+    assert rows == [
+        {"MCCA-ID": "MCCA0001", "SequencingAvailability": "lcWGS only"},
+        {"MCCA-ID": "MCCA0002", "SequencingAvailability": "lcWGS+WES"},
+        {"MCCA-ID": "MCCA0003", "SequencingAvailability": "WES only"},
+        {"MCCA-ID": "MCCA0004", "SequencingAvailability": None},
+    ]
+
+
+def test_write_sequencing_metadata_parquet_uses_mcca_id_and_nominal_type(tmp_path):
+    output_path = tmp_path / "sequencing.parquet"
+
+    count = write_sequencing_metadata_parquet(
+        output_path,
+        [
+            {"MCCA-ID": "MCCA0001", "SequencingAvailability": "lcWGS only"},
+            {"MCCA-ID": "MCCA0002", "SequencingAvailability": None},
+        ],
+    )
+    table = pq.read_table(output_path)
+
+    assert count == 2
+    assert table.column_names == ["MCCA-ID", "SequencingAvailability"]
+    assert table.schema.field("MCCA-ID").type == table.schema.field(
+        "SequencingAvailability"
+    ).type
+    assert table.column("SequencingAvailability").null_count == 1
 
 
 def test_load_gencode_gene_map_reads_gene_symbols(tmp_path):

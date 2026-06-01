@@ -23,6 +23,8 @@ DOWNLOADS = {
     "copy_number_variation.xlsx": "https://docs.google.com/spreadsheets/d/14ugBHdcuWWF0ZxbWWaWN2MD5H_XT6iwo/export?format=xlsx",
     "cell_line_annotations.xlsx": "https://docs.google.com/spreadsheets/d/1nKtQqXtJobVP_5KJrwntVqtUcid8cKQj/export?format=xlsx&gid=1386275249",
     "MCCA-Transcriptomes-VsdBatchCorrected-2025Q2.zip": "https://drive.google.com/uc?export=download&id=1o-Wo4P31z0ddKHRs-k9SCOMEN8-0EbyY",
+    "ena_lcwgs_runs.tsv": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB105230&result=read_run&fields=run_accession,study_accession,sample_accession,secondary_sample_accession,experiment_accession,sample_alias,sample_title,library_strategy,library_source,instrument_model,fastq_ftp,submitted_ftp&format=tsv&download=true&limit=0",
+    "ena_wes_runs.tsv": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB105231&result=read_run&fields=run_accession,study_accession,sample_accession,secondary_sample_accession,experiment_accession,sample_alias,sample_title,library_strategy,library_source,instrument_model,fastq_ftp,submitted_ftp&format=tsv&download=true&limit=0",
     "gencode.vM25.annotation.gtf.gz": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz",
     "gene2ensembl.gz": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2ensembl.gz",
     "gene2pubmed.gz": "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz",

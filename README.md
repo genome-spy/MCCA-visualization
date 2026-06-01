@@ -39,6 +39,7 @@ The scripts are written in Python and managed with `uv`.
 
 - MCCA mutation, copy-number, and cell line annotation workbooks
 - MCCA transcriptome archive
+- ENA run reports for MCCA lcWGS and WES raw-data availability
 - GENCODE mouse M25 annotation
 - NCBI gene mapping tables used for gene label scoring
 - UCSC mm10 cytobands
@@ -48,6 +49,7 @@ files:
 
 - `web/data/processed/samples.parquet`
 - `web/data/processed/model-alleles.parquet`
+- `web/data/processed/sequencing.parquet`
 - `web/data/processed/copy-ratios.parquet`
 - `web/data/processed/mutations.parquet`
 - `web/data/expression.zarr`
@@ -55,6 +57,11 @@ files:
 The tabular outputs use Parquet. TSV would also work for many GenomeSpy data
 sources, but Parquet is faster to load and preserves column types and missing
 values explicitly, avoiding separate parse hints in the visualization specs.
+
+The sequencing metadata are derived from ENA run reports for PRJEB105230
+(lcWGS) and PRJEB105231 (WES). The `SequencingAvailability` attribute records whether
+raw lcWGS data, raw WES data, or both are available for each MCCA cell line. It
+does not indicate which assay produced the displayed copy-ratio profile.
 
 The transcriptome source contains VST batch-corrected expression values with
 Ensembl mouse gene IDs as rows and MCCA samples as columns. The wrangler maps
@@ -115,6 +122,8 @@ loading.
 - `src/mcca_genomespy/wrangle.py`: normalize MCCA workbooks, filter genomic
   data to canonical mm10 chromosomes, and write Parquet/Zarr outputs.
 - `src/mcca_genomespy/expression.py`: build the lazy transcriptome Zarr source.
+- `src/mcca_genomespy/sequencing_metadata.py`: build the ENA sequencing
+  availability metadata source.
 - `src/mcca_genomespy/gene_annotations.py`: build the scored GENCODE gene
   annotation track.
 - `web/specs/`: GenomeSpy visualization and metadata source specs.

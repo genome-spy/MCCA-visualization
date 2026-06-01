@@ -29,11 +29,13 @@ def test_model_allele_metadata_source_uses_parquet_and_mcca_id():
     spec = read_json("web/specs/spec.json")
     model_alleles = read_json("web/specs/model-alleles.json")
 
-    sources = spec["vconcat"][1]["metadata"]["sources"]
-    source = next(source for source in sources if source["id"] == "model-alleles")
+    source_urls = [
+        source["import"]["url"]
+        for source in spec["vconcat"][1]["metadata"]["sources"]
+    ]
     backend = model_alleles["backend"]
 
-    assert source["import"]["url"] == "model-alleles.json"
+    assert "model-alleles.json" in source_urls
     assert backend["sampleIdField"] == "MCCA-ID"
     assert backend["data"]["url"] == "../data/processed/model-alleles.parquet"
     assert backend["data"]["format"]["type"] == "parquet"
@@ -41,6 +43,29 @@ def test_model_allele_metadata_source_uses_parquet_and_mcca_id():
         "visible": False,
         "type": "nominal",
     }
+
+
+def test_sequencing_metadata_source_uses_parquet_and_describes_availability():
+    spec = read_json("web/specs/spec.json")
+    sequencing = read_json("web/specs/sequencing.json")
+
+    source_urls = [
+        source["import"]["url"]
+        for source in spec["vconcat"][1]["metadata"]["sources"]
+    ]
+    backend = sequencing["backend"]
+    attribute = sequencing["attributes"]["SequencingAvailability"]
+
+    assert "sequencing.json" in source_urls
+    assert backend["sampleIdField"] == "MCCA-ID"
+    assert backend["data"]["url"] == "../data/processed/sequencing.parquet"
+    assert backend["data"]["format"]["type"] == "parquet"
+    assert attribute["type"] == "nominal"
+    assert "lcWGS only" in attribute["description"]
+    assert "WES only" in attribute["description"]
+    assert "not which assay produced the displayed copy-ratio profile" in attribute[
+        "description"
+    ]
 
 
 def test_transcriptome_source_uses_symbol_primary_and_ensembl_lookup():
