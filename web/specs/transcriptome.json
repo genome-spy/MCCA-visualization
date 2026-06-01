@@ -1,7 +1,7 @@
 {
   "id": "transcriptome",
   "name": "Transcriptome",
-  "description": "Gene-wise z-scores computed from the VST batch-corrected MCCA transcriptome matrix. Rows are MCCA cell lines and columns are mouse gene symbols, with original Ensembl mouse gene IDs retained as lookup identifiers. Values are loaded lazily from Zarr when selected as metadata attributes.",
+  "description": "Gene-wise expression z-scores computed from the VST batch-corrected MCCA transcriptome matrix. Rows are MCCA cell lines and columns are mouse gene symbols, with original Ensembl mouse gene IDs retained as lookup identifiers. Values are loaded lazily from Zarr when added to metadata.",
   "initialLoad": false,
   "groupPath": "Transcriptome",
 
@@ -13,7 +13,7 @@
         "domainMid": 0,
         "reverse": true
       },
-      "description": "Gene-wise z-score of VST batch-corrected transcript abundance for a mouse gene symbol. Positive values indicate expression above the MCCA cohort mean for that gene; negative values indicate expression below the cohort mean."
+      "description": "Expression z-score value."
     }
   },
 

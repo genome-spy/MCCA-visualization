@@ -5,11 +5,8 @@
   "specId": "MCCA GenomeSpy demo",
 
   "description": [
-    "Independent GenomeSpy visualization demo based on processed Mouse Cancer Cell Line Atlas data.",
-    "This starter view shows cell line annotations, mm10 cytobands, segmented copy ratios, and somatic mutations on canonical mm10 chromosomes only.",
-    "Alternative contigs, decoys, and other non-canonical sequence names are excluded during data wrangling.",
-    "The copy-number values are source LOG2FC values. They are not purified copy numbers and should be interpreted as copy-ratio segments.",
-    "The mutation track does not use semantic scoring. It is intended as a basic atlas-scale context layer and as a testbed for GenomeSpy Agent descriptions."
+    "Independent GenomeSpy visualization demo based on processed Mouse Cancer Cell Line Atlas (MCCA) data.",
+    "Alternative contigs, decoys, and other non-canonical sequence names are excluded during data wrangling."
   ],
 
   "spacing": 7,
@@ -43,30 +40,15 @@
 
       "metadata": {
         "sources": [
-          {
-            "id": "cell-line-annotations",
-            "import": {
-              "url": "metadata.json"
-            }
-          },
-          {
-            "id": "model-alleles",
-            "import": {
-              "url": "model-alleles.json"
-            }
-          },
-          {
-            "id": "transcriptome",
-            "import": {
-              "url": "transcriptome.json"
-            }
-          }
+          { "import": { "url": "metadata.json" } },
+          { "import": { "url": "model-alleles.json" } },
+          { "import": { "url": "transcriptome.json" } }
         ]
       },
 
       "spec": {
         "title": "Genomic data",
-        "description": "Canonical mm10 copy-ratio segments and somatic mutations shown for each MCCA cell line. This first version intentionally omits genes, LOH, purified copy number, and mutation semantic scores.",
+        "description": "Canonical mm10 copy-ratio segments and somatic mutations shown for each MCCA cell line.",
 
         "params": [
           {
@@ -98,21 +80,11 @@
         },
 
         "layer": [
-          {
-            "import": {
-              "url": "copy-ratios.json"
-            }
-          },
-          {
-            "import": {
-              "url": "mutations.json"
-            }
-          }
+          { "import": { "url": "copy-ratios.json" }, "name": "copy-ratios" },
+          { "import": { "url": "mutations.json" }, "name": "mutations" }
         ]
       }
     },
-    {
-      "import": { "url": "gencode-genes.json" }
-    }
+    { "import": { "url": "gencode-genes.json" }, "name": "gencode-genes" }
   ]
 }

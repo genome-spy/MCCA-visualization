@@ -3,7 +3,7 @@
 
   "name": "copy-ratios",
   "title": "Copy ratios",
-  "description": "Segmented MCCA copy-number ratio data. Values come from the source LOG2FC field and are shown as log2 copy-ratio heatmap values. These values are not purified copy-number calls, and this track does not include loss-of-heterozygosity information.",
+  "description": "Segmented MCCA copy-number ratio data. Values come from the source LOG2FC field and are shown as log2 copy-ratio heatmap values.",
 
   "configurableVisibility": true,
 
@@ -44,11 +44,11 @@
       "type": "quantitative",
       "field": "log2fc",
       "scale": {
-        "domain": [-2.5, 0, 2.5],
+        "domain": [-2, 0, 2],
         "range": ["#0050f8", "#f6f6f6", "#ff3000"],
         "clamp": true
       },
-      "description": "Source LOG2FC value for the segment. Negative values indicate relative copy loss, positive values indicate relative copy gain, and the color scale is clamped for readability."
+      "description": "Negative values indicate relative copy loss, positive values indicate relative copy gain, and the color scale is clamped for readability."
     }
   }
 }

@@ -16,6 +16,10 @@
   },
 
   "attributes": {
+    "MouseID": {
+      "type": "nominal",
+      "semanticType": "subjectId"
+    },
     "CellLineName": {
       "type": "nominal",
       "visible": false
@@ -59,6 +63,7 @@
     "SurvivalDays": {
       "type": "quantitative",
       "description": "Mouse survival time in days when available.",
+      "semanticType": "timeToEvent",
       "scale": {
         "scheme": "yellowgreenblue"
       }
