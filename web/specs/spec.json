@@ -35,7 +35,13 @@
           },
           "idField": "MCCA-ID",
           "displayNameField": "CellLineName"
-        }
+        },
+        "labelLength": 130
+      },
+
+      "sampleLayout": {
+        "sampleHeight": 20,
+        "sampleSpacingFactor": 0.05
       },
 
       "metadata": {
