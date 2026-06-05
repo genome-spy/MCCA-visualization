@@ -74,6 +74,7 @@ def test_transcriptome_source_uses_symbol_primary_and_ensembl_lookup():
     identifiers = transcriptome["backend"]["identifiers"]
 
     assert "Ensembl mouse gene IDs retained as lookup identifiers" in transcriptome["description"]
+    assert transcriptome["backend"]["url"] == "../data/processed/expression.zarr"
     assert identifiers == [
         {
             "name": "symbol",

@@ -55,7 +55,7 @@ files:
 - `web/data/processed/sequencing.parquet`
 - `web/data/processed/copy-ratios.parquet`
 - `web/data/processed/mutations.parquet`
-- `web/data/expression.zarr`
+- `web/data/processed/expression.zarr`
 
 The tabular outputs use Parquet. TSV would also work for many GenomeSpy data
 sources, but Parquet is faster to load and preserves column types and missing

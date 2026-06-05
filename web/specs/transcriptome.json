@@ -19,7 +19,7 @@
 
   "backend": {
     "backend": "zarr",
-    "url": "../data/expression.zarr",
+    "url": "../data/processed/expression.zarr",
     "identifiers": [
       {
         "name": "symbol",

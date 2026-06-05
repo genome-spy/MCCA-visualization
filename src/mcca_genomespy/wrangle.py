@@ -357,7 +357,7 @@ def wrangle(raw_dir: Path, processed_dir: Path) -> None:
         gene_map = load_gencode_gene_map(raw_dir / GENCODE_GTF)
         summary = write_transcriptome_zarr(
             transcriptome_path,
-            processed_dir.parent / "expression.zarr",
+            processed_dir / "expression.zarr",
             gene_map=gene_map,
         )
         print(
