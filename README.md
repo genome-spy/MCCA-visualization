@@ -1,9 +1,12 @@
 # MCCA GenomeSpy Visualization
 
-This repository builds a local GenomeSpy visualization for the Mouse Cancer
-Cell Line Atlas (MCCA). It contains the visualization specs, a small static web
-launcher, and Python scripts that download and wrangle the public source data
-into files that GenomeSpy can load efficiently.
+This repository builds a local [GenomeSpy](https://genomespy.app/) visualization
+for the Mouse Cancer Cell Line Atlas (MCCA). It contains the visualization
+specs, a small static web launcher, and Python scripts that download and wrangle
+the public source data into files that GenomeSpy can load efficiently.
+
+This is an independent GenomeSpy demo for non-human cancer genomics data. It is
+not affiliated with, maintained by, or endorsed by the MCCA publication authors.
 
 The original data resource is described in:
 
