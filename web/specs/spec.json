@@ -9,6 +9,12 @@
     "Alternative contigs, decoys, and other non-canonical sequence names are excluded during data wrangling."
   ],
 
+  "bookmarks": {
+    "remote": {
+      "url": "../bookmarks.json"
+    }
+  },
+
   "spacing": 7,
 
   "vconcat": [

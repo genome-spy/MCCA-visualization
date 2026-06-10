@@ -1,0 +1,187 @@
+[
+  {
+    "name": "Welcome to GenomeSpy",
+    "notes": "This tour demonstrates GenomeSpy with data from the Mouse Cancer Cell Line Atlas (MCCA), a non-human cancer model resource described by Mueller et al. in [*A disease model resource reveals core principles of tissue-specific cancer evolution*](https://doi.org/10.1038/s41586-026-10187-2). This visualization is an independent GenomeSpy demo and is not affiliated with or endorsed by the MCCA publication authors.\n\n![Encoding](../tour/encoding.svg)\n\nThis visualization displays MCCA cell line annotations together with segmented *copy-ratio* data, somatic short variants, model alleles parsed from the mouse model descriptions, sequencing availability, and selected transcriptome metadata. Segment colors encode log2 copy-ratio values from the source data. Points represent somatic short variants; their size encodes tumor allele fraction, and color encodes variant consequence. A tooltip reveals the exact values of variables in the underlying dataset. Try moving your mouse cursor over the data.",
+    "actions": []
+  },
+  {
+    "name": "Navigating around the genome",
+    "notes": "You can navigate along the mm10 genome by dragging or by using a touchpad. To zoom, use the mouse wheel or scroll the touchpad up/down using two fingers.\n\n![Using mouse or touchpad](../tour/scroll-and-zoom.svg)\n\nThe genome axis uses canonical mm10 chromosomes. The MCCA wrangling excludes alternative contigs, decoys, and other non-canonical sequence names so that copy-ratio segments, mutations, cytobands, and GENCODE M25 gene annotations share the same genomic coordinate system.",
+    "actions": []
+  },
+  {
+    "name": "Copy-number patterns",
+    "timestamp": 1780993151281,
+    "actions": [
+      {
+        "type": "sampleView/groupByNominal",
+        "payload": {
+          "attribute": {
+            "type": "SAMPLE_ATTRIBUTE",
+            "specifier": "Annotations/CancerType"
+          }
+        }
+      },
+      {
+        "type": "sampleView/retainGroupsBySize",
+        "payload": {
+          "level": 1,
+          "measure": "size",
+          "operator": "gte",
+          "operand": 20
+        }
+      }
+    ],
+    "scaleDomains": {
+      "x_at_root": [
+        {
+          "chrom": "chr1",
+          "pos": 0
+        },
+        {
+          "chrom": "chrM",
+          "pos": 16298
+        }
+      ]
+    },
+    "viewSettings": {
+      "visibilities": [
+        {
+          "scope": ["copy-ratios"],
+          "view": "copy-ratio-g-score-summary",
+          "visible": true
+        },
+        {
+          "scope": [],
+          "view": "sample-labels",
+          "visible": false
+        }
+      ]
+    },
+    "notes": "This bookmark shows copy-number patterns across CancerTypes with at least 20 samples.\n\nSome observations:\n- Chromosome 4 loss is prominent in lung, pancreatic, and gastric cancer.\n- Recurrent focal Cdkn2a-region deletions are most apparent in intestinal, lung, and pancreatic cancer.\n- Sarcoma and intestinal cancer show frequent whole-chromosome 6 gain.\n- Focal Myc amplification is visible in many sarcoma samples and is also seen in pancreatic cancer.\n\nCaveat: samples within a CancerType are not always independent. Some MCCA lines are matched or related samples from the same mouse, tumor, lesion series, or primary-metastasis case. This view is intended to illustrate copy-number patterns and GenomeSpy workflows, not to estimate recurrence frequencies from a strictly independent cohort."
+  },
+  {
+    "name": "Cdkn2a losses in Kras models",
+    "actions": [
+      {
+        "type": "sampleView/filterByNominal",
+        "payload": {
+          "attribute": {
+            "type": "SAMPLE_ATTRIBUTE",
+            "specifier": "ModelAlleles/Kras"
+          },
+          "remove": true,
+          "values": [null]
+        }
+      },
+      {
+        "type": "sampleView/groupByNominal",
+        "payload": {
+          "attribute": {
+            "type": "SAMPLE_ATTRIBUTE",
+            "specifier": "Annotations/CancerType"
+          }
+        }
+      },
+      {
+        "type": "sampleView/retainGroupsBySize",
+        "payload": {
+          "level": 1,
+          "measure": "size",
+          "operator": "gte",
+          "operand": 10
+        }
+      },
+      {
+        "type": "sampleView/addMetadataFromSource",
+        "payload": {
+          "columnIds": ["Cdkn2a", "Kras"],
+          "sourceId": "transcriptome",
+          "groupPath": "Transcriptome"
+        }
+      },
+      {
+        "type": "paramProvenance/paramChange",
+        "payload": {
+          "selector": {
+            "scope": [],
+            "param": "brush"
+          },
+          "value": {
+            "type": "interval",
+            "intervals": {
+              "x": [
+                {
+                  "chrom": "chr4",
+                  "pos": 89274260
+                },
+                {
+                  "chrom": "chr4",
+                  "pos": 89294388
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "type": "sampleView/deriveMetadata",
+        "payload": {
+          "attribute": {
+            "type": "VALUE_AT_LOCUS",
+            "specifier": {
+              "view": {
+                "scope": ["copy-ratios"],
+                "view": "copy-ratios"
+              },
+              "field": "log2fc",
+              "interval": {
+                "type": "selection",
+                "selector": {
+                  "scope": [],
+                  "param": "brush"
+                }
+              },
+              "aggregation": {
+                "op": "min"
+              }
+            }
+          },
+          "name": "Cdkn2a CN",
+          "groupPath": ""
+        }
+      },
+      {
+        "type": "sampleView/sortBy",
+        "payload": {
+          "attribute": {
+            "type": "SAMPLE_ATTRIBUTE",
+            "specifier": "Cdkn2a CN"
+          }
+        }
+      }
+    ],
+    "scaleDomains": {
+      "x_at_root": [
+        {
+          "chrom": "chr4",
+          "pos": 87404412
+        },
+        {
+          "chrom": "chr4",
+          "pos": 90554373
+        }
+      ]
+    },
+    "viewSettings": {
+      "visibilities": [
+        {
+          "scope": [],
+          "view": "attributeGroup-ModelAlleles",
+          "visible": true
+        }
+      ]
+    },
+    "notes": "This view focuses on the Cdkn2a locus in Kras-engineered MCCA models. Samples are grouped by CancerType, groups with at least 10 samples are retained, and rows are sorted by the minimum copy-ratio value at Cdkn2a. This makes focal Cdkn2a-region losses stand out from broader chromosome 4 copy-number changes.\n\nThe strongest focal losses are visible in pancreatic cancer, with additional focal events in intestinal and lung cancer. This is consistent with the paper's conclusion that Cdkn2a inactivation is especially frequent in Kras-driven pancreatic cancer, while being less common but still present in lung and intestinal models. The paper links this pattern to tissue-specific Cdkn2a regulation: Cdkn2a is strongly induced during Kras-initiated early pancreatic oncogenesis, but increases only slightly during early intestinal tumour evolution.\n\nThe Cdkn2a and Kras transcriptome columns show expression z-scores for the same MCCA cell lines and can be used to inspect whether local copy-ratio changes coincide with expression changes. These values provide sample-level context, but they are not a direct reproduction of the paper's early-lesion or cell-of-origin expression analyses. The derived Cdkn2a CN column is a visual ranking score based on local log2 copy-ratio, not a curated deletion call."
+  }
+]

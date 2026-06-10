@@ -25,16 +25,19 @@
       "visible": false
     },
     "Lineage": {
-      "type": "nominal"
+      "type": "nominal",
+      "description": "Broad tissue or cellular lineage context of the MCCA sample."
     },
     "Tissue": {
       "type": "nominal"
     },
     "CancerType": {
-      "type": "nominal"
+      "type": "nominal",
+      "description": "MCCA disease or entity category. Despite the column name, this can include non-malignant contexts such as healthy tissue or precursor lesions when they are part of a cancer-evolution model system."
     },
     "CancerTypeDetailed": {
-      "type": "nominal"
+      "type": "nominal",
+      "description": "More specific MCCA entity, subtype, or disease-stage category within CancerType."
     },
     "MouseModelType": {
       "type": "nominal"

@@ -60,7 +60,7 @@
       "params": [
         {
           "name": "threshold",
-          "value": 0.7,
+          "value": 0.5,
           "bind": {
             "input": "range",
             "min": 0.0,
@@ -73,7 +73,7 @@
         },
         {
           "name": "limit",
-          "value": 2.5,
+          "value": 1.5,
           "bind": {
             "input": "range",
             "min": 0.1,
@@ -93,7 +93,7 @@
         "color": "black"
       },
 
-      "height": 50,
+      "height": 40,
       "visible": false,
       "view": { "stroke": "lightgray" },
       "padding": { "bottom": 4 },
@@ -123,7 +123,7 @@
           "field": "coverage",
           "type": "quantitative",
           "title": null,
-          "axis": {},
+          "axis": null,
           "scale": {
             "nice": true
           }
