@@ -11,7 +11,8 @@
 
   "bookmarks": {
     "remote": {
-      "url": "../bookmarks.json"
+      "url": "../bookmarks.json",
+      "tour": true
     }
   },
 
