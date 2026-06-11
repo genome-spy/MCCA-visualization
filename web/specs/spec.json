@@ -5,7 +5,7 @@
   "specId": "MCCA GenomeSpy demo",
 
   "description": [
-    "Independent GenomeSpy visualization demo based on processed Mouse Cancer Cell Line Atlas (MCCA) data.",
+    "GenomeSpy demo for Mouse Cancer Cell Line Atlas (MCCA) data.",
     "Alternative contigs, decoys, and other non-canonical sequence names are excluded during data wrangling."
   ],
 
