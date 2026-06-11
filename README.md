@@ -136,10 +136,16 @@ loading.
 To deploy the demo on a static web server, run the wrangling commands above and
 publish the contents of `web/`.
 
+## Contact
+
+Questions and feedback about this independent GenomeSpy demo are welcome.
+Please contact Kari Lavikka at kari@karilavikka.fi.
+
 ## License
 
 The contents of this repository are released under CC0 1.0 Universal.
 
 ## Acknowledgement
 
-OpenAI Codex with GPT-5.5 was used to help prepare the data-wrangling scripts.
+OpenAI Codex with GPT-5.5 was used to help prepare the data-wrangling scripts,
+documentation, and bookmark notes.
