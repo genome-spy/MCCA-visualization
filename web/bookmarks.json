@@ -164,11 +164,11 @@
       "x_at_root": [
         {
           "chrom": "chr4",
-          "pos": 87404412
+          "pos": 87336675
         },
         {
           "chrom": "chr4",
-          "pos": 90554373
+          "pos": 96575040
         }
       ]
     },
@@ -178,6 +178,76 @@
           "scope": [],
           "view": "attributeGroup-ModelAlleles",
           "visible": true
+        },
+        {
+          "scope": [],
+          "view": "sample-labels",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Apc",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Bloom",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Braf",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Erk1",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Erk2",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Fgfr2",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/H11",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Hnf4a",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Ink4a",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Pdk1",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Pten",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Snail",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Cdkn1b",
+          "visible": false
         }
       ]
     },
@@ -288,11 +358,11 @@
       "x_at_root": [
         {
           "chrom": "chr4",
-          "pos": 87404412
+          "pos": 87336675
         },
         {
           "chrom": "chr4",
-          "pos": 90554373
+          "pos": 96575040
         }
       ]
     },
@@ -302,6 +372,76 @@
           "scope": [],
           "view": "attributeGroup-ModelAlleles",
           "visible": true
+        },
+        {
+          "scope": [],
+          "view": "sample-labels",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Apc",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Bloom",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Braf",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Erk1",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Erk2",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Fgfr2",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/H11",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Hnf4a",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Ink4a",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Pdk1",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Pten",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Snail",
+          "visible": false
+        },
+        {
+          "scope": [],
+          "view": "attribute-ModelAlleles/Cdkn1b",
+          "visible": false
         }
       ]
     },
