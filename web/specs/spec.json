@@ -97,8 +97,26 @@
           { "import": { "url": "copy-ratios.json" }, "name": "copy-ratios" },
           { "import": { "url": "mutations.json" }, "name": "mutations" }
         ]
+      },
+      "config": {
+        "legendTrack": {
+          "style": null,
+          "disable": false,
+          "offset": 10
+        }
       }
     },
     { "import": { "url": "gencode-genes.json" }, "name": "gencode-genes" }
-  ]
+  ],
+
+  "config": {
+    "style": {
+      "group-title": {
+        "orient": "none"
+      }
+    },
+    "legendTrack": {
+      "disable": true
+    }
+  }
 }
