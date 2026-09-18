@@ -1,5 +1,8 @@
 # MCCA GenomeSpy Visualization
 
+> [!NOTE]
+> This repo has been migrated to [genomespy-dataset-recipes](https://github.com/genome-spy/genomespy-dataset-recipes/tree/main/recipes/mcca-cell-line-atlas-mm10).
+
 This repository builds a local [GenomeSpy](https://genomespy.app/) visualization
 for the Mouse Cancer Cell Line Atlas (MCCA). It contains the visualization
 specs, a small static web launcher, and Python scripts that download and wrangle
